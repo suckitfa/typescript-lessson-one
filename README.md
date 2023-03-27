@@ -35,10 +35,58 @@ let yourname:string = 'bob'
 let age:number = 12
 let isLoading:boolean = false;
 let re:RegExp = /\w+/g
-// union types
+// union types 类型的结合运算 = 求并集
 let album:string|number;
 album = '12312312'
 album = 123123
+// tuple & union type arr
+// Tuple is  spcial postition with spicial type
+// myTumple表示共三个元素，类型依次是string,number,boolean
+let myTuple:[string,number,boolean] = ['dave',123,false];
+// union types
+// mixed表示，这个数组中的元素的类型可以是：string,number,boolean
+let mixed = ['jhone',1,false]
+
+// object
+const exampleObj = {
+    prop1:"Dabe",
+    prop2:true
+}
+
+// type 用来创建一个类型
+// create an type called Guitaris
+type Guitarist = {
+    name:string;
+    // make it optional, => active:undefined|boolean
+    active?:boolean;
+    albums:(string|number)[];
+}
+
+let evh: Guitarist = {
+    name:'Eddie',
+    active:false,
+    albums:[1983,4123,'OU*12']
+}
+
+const greetGuitaris = (guitaris: Guitarist) => {
+  return `Hello ${guitaris}!`
+}
+
+
+const isActive = (guitarist:Guitaris) => {
+  // type narrow
+  if (guitarist.active !== undefined) {
+    return guitarist.active
+  }
+  return false
+}
+
+// interface
+interface Guitaris {
+    name:string;
+    active?:boolean;
+    albums:(number|string)[]
+} 
 ```
 - explicit typing
 ### references
