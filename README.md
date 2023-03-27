@@ -87,7 +87,33 @@ interface Guitaris {
     name:string;
     active?:boolean;
     albums:(number|string)[]
-} 
+}
+
+
+// Eums: something added to the lang and runtime
+enum Grade {
+    U = 1,
+    D,
+    C,
+    B,
+    A
+}
+console.log(Grade.A)
+
+// type alias
+type stringOrNumber = string | number
+type stringOrNumberArray = (string | number)[]
+type Guitaris2 = {
+    name?:string;
+    active:boolean;
+    albums:stringOrNumberArray;
+}
+type UserId = stringOrNumber;
+
+// Literal types
+let davename:'Dave' = 'Dave'
+let userName:'Dave'|'Jhone'|'Amy';
+userName = 'Dave'
 ```
 ![对象](./imgs/obj.png)
 ![可选属性](./imgs/optional-props.png)

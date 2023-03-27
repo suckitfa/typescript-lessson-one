@@ -1,4 +1,7 @@
 // lesson three
+
+// import { isStringLiteralOrJsxExpression } from "typescript"
+
 // Arrays
 let stringArr = ['one','two','hello']
 let guitarts = ['Strat','Les Paul',5150]
@@ -83,3 +86,40 @@ const greetGuitarist = (guitarts: Guitaris) => {
 }
 console.log('with name = ',greetGuitarist(jp))
 console.log('without name = ',greetGuitarist(evh))
+
+// Eums: something added to the lang and runtime
+enum Grade {
+    U = 1,
+    D,
+    C,
+    B,
+    A
+}
+console.log(Grade.A)
+
+// type alias
+type stringOrNumber = string | number
+type stringOrNumberArray = (string | number)[]
+type Guitaris2 = {
+    name?:string;
+    active:boolean;
+    albums:stringOrNumberArray;
+}
+type UserId = stringOrNumber;
+
+// Literal types
+let davename:'Dave' = 'Dave'
+let userName:'Dave'|'Jhone'|'Amy';
+userName = 'Dave'
+
+// functions
+const add = (a:number,b:number):number => {
+    return a + b;
+}
+
+const logMsg = (message:any) => {
+    console.log(message)
+}
+logMsg('hello wolrd')
+logMsg(false)
+logMsg('sdf')

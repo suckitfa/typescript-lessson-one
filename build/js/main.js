@@ -1,5 +1,6 @@
 "use strict";
 // lesson three
+// import { isStringLiteralOrJsxExpression } from "typescript"
 // Arrays
 let stringArr = ['one', 'two', 'hello'];
 let guitarts = ['Strat', 'Les Paul', 5150];
@@ -42,3 +43,27 @@ const greetGuitarist = (guitarts) => {
 };
 console.log('with name = ', greetGuitarist(jp));
 console.log('without name = ', greetGuitarist(evh));
+// Eums: something added to the lang and runtime
+var Grade;
+(function (Grade) {
+    Grade[Grade["U"] = 1] = "U";
+    Grade[Grade["D"] = 2] = "D";
+    Grade[Grade["C"] = 3] = "C";
+    Grade[Grade["B"] = 4] = "B";
+    Grade[Grade["A"] = 5] = "A";
+})(Grade || (Grade = {}));
+console.log(Grade.A);
+// Literal types
+let davename = 'Dave';
+let userName;
+userName = 'Dave';
+// functions
+const add = (a, b) => {
+    return a + b;
+};
+const logMsg = (message) => {
+    console.log(message);
+};
+logMsg('hello wolrd');
+logMsg(false);
+logMsg('sdf');
