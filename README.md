@@ -23,11 +23,12 @@ compilerOptions对象中的一些属性
 - JS is dynamic typing: types are checked at run time.
 
 ### TS concept
-- implicit typing
+- implicit typing 隐式类型，TS自动进行类型推断
 ```TS
 // 变量名 myname没有明确的被指明类型，但TS编译器能够准确的推断出myname的类型为string
 let myname = "Dave"
 ```
+- explicit typing:显示声明类型
 - Basic types
 ```TS
 // string
@@ -88,6 +89,9 @@ interface Guitaris {
     albums:(number|string)[]
 } 
 ```
-- explicit typing
+![对象](./imgs/obj.png)
+![可选属性](./imgs/optional-props.png)
+![sum函数](./imgs/sum.png)
+![创建一个新类型](./imgs/type.png)
 ### references
 - https://www.youtube.com/watch?v=gieEQFIfgYc
