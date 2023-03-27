@@ -27,7 +27,18 @@ compilerOptions对象中的一些属性
 ```TS
 // 变量名 myname没有明确的被指明类型，但TS编译器能够准确的推断出myname的类型为string
 let myname = "Dave"
-
+```
+- Basic types
+```TS
+// string
+let yourname:string = 'bob'
+let age:number = 12
+let isLoading:boolean = false;
+let re:RegExp = /\w+/g
+// union types
+let album:string|number;
+album = '12312312'
+album = 123123
 ```
 - explicit typing
 ### references
