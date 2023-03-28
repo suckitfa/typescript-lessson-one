@@ -114,10 +114,59 @@ type UserId = stringOrNumber;
 let davename:'Dave' = 'Dave'
 let userName:'Dave'|'Jhone'|'Amy';
 userName = 'Dave'
+
+// create a func type
+// create a func signature
+type mathFunc = (a:number,b:number) => number
+const mutiply:mathFunc = (a,b) => a*b;
+// 使用接口定义函数
+interface ImathFunc {
+    (a:number,b:number):number;
+}
+const divide:ImathFunc = (a,b) => a/b;
+// func: default value, reset params, optional value
+// 其实没有传值，JS会自动给你传入undefined;
+
+// never
+
+// type assertion or type casting
+type One = string
+type Two = string | number
+type Three = 'hello'
+// convert to more or less specific
+let somea:One = 'hello'
+let b = a as Two
+let somec = somea as Three;
+
+let d = <One> 'world'
+let e = <string|number> 'word'
+
+const addOrConcat =  (a:number,b:number, c:'add' | 'concat'):number|string => {
+    if(c === 'add') {
+        return a + b;
+    } else {
+        return '' + a + b + c;
+    }
+}
+let myval:string = addOrConcat(1,2,'concat') as string
+// Be careful! TS sees no problem here - but a string is returned;
+let nextval:number = addOrConcat(1,23,'concat') as number
+
+// unkonw 
+// 10 as string
+
+// the DOM
+// 原来感叹号是非null和非undefined的类型断言
+const img = document.querySelector('.img')!
+const myimg = document.querySelector('#img') as HTMLImageElement
+// will not work in JSX file.
+const nextImg  = <HTMLImageElement>document.getElementById('#img');
+(img as HTMLImageElement).src = 'http://baiduc.com'
 ```
 ![对象](./imgs/obj.png)
 ![可选属性](./imgs/optional-props.png)
 ![sum函数](./imgs/sum.png)
 ![创建一个新类型](./imgs/type.png)
+![创建一个新类型](./imgs/overlaps.png)
 ### references
 - https://www.youtube.com/watch?v=gieEQFIfgYc
