@@ -1,221 +1,117 @@
-// lesson three
+// class Coder {
+//     // 先不初始化这个
+//     secondLang!:string
+//     constructor(
+//         public readonly name: string,
+//         public  music:string,
+//         private age:number,
+//         protected lang:string = 'TypeScript'
+//     ) {
+//         this.name = name;
+//         this.music = music
+//         this.age = age
+//         this.lang = lang
+//     }
 
-// import { isStringLiteralOrJsxExpression } from "typescript"
-
-// Arrays
-let stringArr = ['one','two','hello']
-let guitarts = ['Strat','Les Paul',5150]
-let mixedData = ['EVH',198,false,null,undefined]
-stringArr[0] = '123123'
-// stringArr.push(false)
-console.log('stringArr = ',stringArr)
-
-guitarts.push(12313132)
-mixedData.push(false,1231)
-console.log('mixedData = ',mixedData)
-
-let arr = []
-let bands:string[] = []
-bands.push('hello','shit')
-console.log('bands = ',bands)
-
-// Tuple spcial postition spicial type
-let myTuple:[string,number,boolean] = ['dave',123,false];
-// union types
-let mixed = ['jhone',1,false]
-// myTuple = mixed
-
-let myObj:object
-myObj = []
-console.log(typeof myObj)
-
-const exampleObj = {
-    prop1:"Dabe",
-    prop2:true
-}
-
-// create an type called Guitaris
-// type Guitarist = {
-//     name:string;
-//     // optional props
-//     active?:boolean;
-//     albums:(string|number)[];
+//     public getAge() {
+//         return this.age
+//     }
 // }
 
-// let evh: Guitarist = {
-//     name:'Eddie',
-//     active:false,
-//     albums:[1983,4123,'OU*12']
+// // const Dave = new Coder('Dave','Country',122,'TypeScript')
+// // console.log('name = ',Dave.name)
+// // console.log('age = ',Dave.getAge())
+// // console.log('age = ',Dave.lang)
+
+
+// class WebDev extends Coder {
+//     constructor(
+//         public computer:string,
+//         name:string,
+//         music:string,
+//         age:number
+//     ) {
+//         super(name,music,age)
+//         this.computer = computer
+//     }
+
+//     public getLang() {
+//         // protected prop only access in the class and its sub-class
+//         return `I write ${this.lang}`
+//     }
 // }
+// // const webdev = new WebDev('Mac Book','Bob','Rock',19)
+// // console.log('webdev = ',webdev.getAge())
+// // console.log('typeof = ',typeof webdev)
+// // console.log(webdev instanceof WebDev)
+// // console.log(webdev instanceof Coder)
 
-// let jp: Guitarist = {
-//     name:"Jimmy",
-//     active:true,
-//     albums:['I',"II","IV"]
-// }
+// const Sara = new WebDev('Mac','Sara','Lofi',20)
+// console.log(Sara.getLang())
 
-// pass it to a func
-// const greetGuitarist = (guitarts: Guitarist) => {
-//     return `Hello ${guitarts.name}!`
-// }
-
-// console.log(greetGuitarist(jp))
-
-// interface
-interface Guitaris {
-    name?:string;
-    active?:boolean;
-    albums:(number|string)[]
-} 
-
-const jp: Guitaris  = {
-    name:"Jimmy",
-    albums:[1]
+interface Musician {
+    name:string;
+    instrument:string;
+    play(action:string):string;
 }
 
-const evh:Guitaris = {
-    albums:[1,2,3]
-}
-
-const greetGuitarist = (guitarts: Guitaris) => {
-    // type narrow
-    if(guitarts.name) {
-        return `Hello ${guitarts.name.toUpperCase()}`
+class Guitarist implements Musician {
+    name: string;
+    instrument: string;
+    constructor(name:string,instrument:string) {
+        this.name = name;
+        this.instrument = instrument
     }
-    return 'Hello threre!'
-}
-console.log('with name = ',greetGuitarist(jp))
-console.log('without name = ',greetGuitarist(evh))
-
-// Eums: something added to the lang and runtime
-enum Grade {
-    U = 1,
-    D,
-    C,
-    B,
-    A
-}
-console.log(Grade.A)
-
-// type alias
-type stringOrNumber = string | number
-type stringOrNumberArray = (string | number)[]
-type Guitaris2 = {
-    name?:string;
-    active:boolean;
-    albums:stringOrNumberArray;
-}
-type UserId = stringOrNumber;
-
-// Literal types
-let davename:'Dave' = 'Dave'
-let userName:'Dave'|'Jhone'|'Amy';
-userName = 'Dave'
-
-// functions
-const add = (a:number,b:number):number => {
-    return a + b;
+    play(action: string): string {
+        return `${this.name} ${action} ${this.instrument}`
+    }   
 }
 
-const logMsg = (message:any) => {
-    console.log(message)
-}
-logMsg('hello wolrd')
-logMsg(false)
-logMsg('sdf')
+const Page = new Guitarist('Jimmy','guitar')
+console.log(Page.play('strums'))
+// --------
+class Peeps {
+    static count:number = 0
 
-let subtract = function(c:number,b:number):number {
-    return a - b;
-}
-
-// create a func signature
-type mathFunc = (a:number,b:number) => number
-const mutiply:mathFunc = (a,b) => a*b;
-// 使用接口定义函数
-interface ImathFunc {
-    (a:number,b:number):number;
-}
-const divide:ImathFunc = (a,b) => a/b;
-
-// optionals params comes the last
-const addAll = (a:number,b:number,c?:number):number => {
-    // type guard
-    if(typeof c !== 'undefined') {
-        return a + b + c;
+    static getCount():number {
+        // this is important
+        return Peeps.count;
     }
-    return a + b ;
-}
-// default params value
-const sumAll = (a:number = 2,b:number,c:number = 0):number => {
-    return a + b + c;
-}
 
-logMsg(sumAll(undefined,2,3))
-
-// reset params
-const totalAll = (...nums:number[]):number => {
-    return nums.reduce((prev,cur) => prev+cur)
-    // return nums.reduce((acc,cur) => acc + cur)
-}
-logMsg(totalAll(1,2,3,4,5,6,7,8,9,10))
-logMsg(totalAll(1))
-
-// never type
-const createError = (errMsg:string):never => {
-    throw new Error(errMsg)
-}
-// void type
-const infinite = () => {
-    let i = 1
-    while(true) {
-        i++
-        if(i > 100) break;
+    public id:number
+    constructor(public name:string) {
+        this.name = name;
+        this.id = ++Peeps.count
     }
 }
-// custom type guard
-const isNumber = (value:any):boolean => {
-    return typeof value === 'number' ? true : false
-}
-// use of the never type
-const numberOrString = (value:number|string):string => { 
-    // type guard
-    if(typeof value === 'string') return 'string'
-    if(typeof value === 'number') return 'number'
-    return createError('This should never happen!')
-    // 还有一条分支是undefined
-}
-numberOrString('')
 
-// type assertion or type casting
-type One = string
-type Two = string | number
-type Three = 'hello'
-// convert to more or less specific
-let somea:One = 'hello'
-let b = a as Two
-let somec = somea as Three;
+const John = new Peeps('John')
+const Steve = new Peeps('Steve')
+const Amy = new Peeps('Amy')
+console.log(Peeps.count)
+console.log(John.id)
+console.log(Steve.id)
+console.log(Amy.id)
 
-let d = <One> 'world'
-let e = <string|number> 'word'
+class Bands {
+    private dataState:string[]
+    constructor() {
+        this.dataState = []
+    }
 
-const addOrConcat =  (a:number,b:number, c:'add' | 'concat'):number|string => {
-    if(c === 'add') {
-        return a + b;
-    } else {
-        return '' + a + b + c;
+    // speical key words!!
+    public get data(): string[]{
+        return this.dataState
+    }
+
+    public set data(value:string[]) {
+        if(Array.isArray(value) && value.every(el => typeof el === 'string')) {
+            this.dataState = value
+        } else throw new Error('Param is not an array of strings')
     }
 }
-let myval:string = addOrConcat(1,2,'concat') as string
-// Be careful! TS sees no problem here - but a string is returned;
-let nextval:number = addOrConcat(1,23,'concat') as number
-
-// unkonw 
-// 10 as string
-
-// the DOM
-// 原来感叹号是非null和非undefined的类型断言
-const img = document.querySelector('.img')!
-const myimg = document.querySelector('#img') as HTMLImageElement
-// will not work in JSX file.
-const nextImg  = <HTMLImageElement>document.getElementById('#img');
-(img as HTMLImageElement).src = 'http://baiduc.com'
+const MyBands = new Bands()
+MyBands.data = ['Neil oung','Led Zep']
+console.log('mybands = ',MyBands.data)
+MyBands.data = [...MyBands.data,'TF Girls']
+console.log('mybands = ',MyBands.data)
